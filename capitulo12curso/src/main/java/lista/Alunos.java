@@ -1,13 +1,22 @@
 package lista;
 
 public class Alunos {
+
     String nome;
 
-    boolean vemDepoisDe(Alunos alunos){
-        if (alunos == null){
+    Alunos(String nome) {
+        this.nome = nome;
+    }
+
+    String getNome() {
+        return nome;
+    }
+
+    boolean vemDepoisDe(Alunos atividade) {
+        if (atividade == null) {
             return false;
         }
-        return nome.compareTo(alunos.nome) > 0;
+        return nome.compareTo(atividade.nome) > 0;
     }
 
 

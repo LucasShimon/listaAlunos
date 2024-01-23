@@ -5,86 +5,32 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
-
+import java.util.List;
 
 public class Principal {
     public static void main(String[] args) throws IOException {
 
-
-        ListaAlunos lista = new ListaAlunos();
-
-        System.out.println("------------------------------");
-
-        Alunos aluno = new Alunos();
-        aluno.nome = "Thiago";
-        lista.adicionar(aluno);
-
-        aluno = new Alunos();
-        aluno.nome = "Maria";
-        lista.adicionar(aluno);
-
-        aluno = new Alunos();
-        aluno.nome = "Alexandre";
-        lista.adicionar(aluno);
-
-        aluno = new Alunos();
-        aluno.nome = "Shimon";
-        lista.adicionar(aluno);
-
-        aluno = new Alunos();
-        aluno.nome = "José";
-        lista.adicionar(aluno);
-// primeiro comando da lista
-
-
-        iterar(lista);
-
-        Scanner scanner = new Scanner(System.in);
-
-        ArrayList<String> Linhas2 = new ArrayList<>();
-
-        iterar(lista);
-
         Path arquivo = Paths.get("/home/lucaslimashimon/aula/arquivo.txt");
 
-        Files.write(arquivo, Linhas2);
+        List<String> linhas = Files.readAllLines(arquivo);
 
+        ListaAlunos listaAtividades = new ListaAlunos();
 
-        Path arquivoss = Paths.get("/home/lucaslimashimon/aula/arquivo.txt");
-
-        Files.readAllLines(arquivoss);
-
-
-        lista.ordenar();
-
-
-
-
-        //lendo o arquivo
-
-
-        ArrayList<String> LinhasDois = new ArrayList<>();
-
-        lista.ordenar();
-        iterar(lista);
-
-        Path arquivosDois = Paths.get("/home/lucaslimashimon/aula/arquivo2.txt");
-        Files.write(arquivo, Linhas2);
-
-        scanner.close();
-    }
-    static void iterar(ListaAlunos listaAlunos) {
-        for (int i = 0; i < listaAlunos.tamanhoLista; i++) {
-            Alunos a = listaAlunos.obter(i);
-            if (a != null) {
-
-                System.out.println("Aluno " + a.nome);
-            } else {
-                System.out.println("Aluno sem nome");
-            }
+        for (String nome : linhas) {
+            Alunos atividade = new Alunos(nome);
+            listaAtividades.adicionarAtividade(atividade);
         }
-        System.out.println("------------------------------");
+
+        listaAtividades.ordenar();
+
+        Path arquivoOrdenado = Paths.get("/home/lucaslimashimon/aula/arquivoOrdenado.txt");
+
+        List<String> nomesOrdenados = new ArrayList<>();
+        for (Alunos atividade : listaAtividades.getAtividades()) {
+            nomesOrdenados.add(atividade.getNome());
+        }
+
+        Files.write(arquivoOrdenado, nomesOrdenados);
 
     }
 }

@@ -1,44 +1,36 @@
 package lista;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListaAlunos {
-    final int QUANTIDADE_MINIMA = 2;
-    Alunos[] lista = new Alunos[QUANTIDADE_MINIMA];
 
-   Alunos obter (int indice){
-       return lista[indice];
-   }
-    int tamanhoLista = 0;
-    void adicionar(Alunos aluno){
-        if (tamanhoLista == lista.length){
-            Alunos[] novaLista = new Alunos[QUANTIDADE_MINIMA + lista.length];
+    private List<Alunos> atividades;
 
-            for (int i = 0 ; i < lista.length; i++){
-                novaLista[i] = lista[i];
-            }
-
-            lista = novaLista;
-
-        }
-
-        lista[tamanhoLista] = aluno;
-
-        tamanhoLista++;
+    public ListaAlunos() {
+        atividades = new ArrayList<>();
     }
-    void ordenar (){
-        for (int i = 1 ; i< tamanhoLista; i++){
-            Alunos alunoPosicaoBase = lista[i];
 
+    public void adicionarAtividade(Alunos atividade) {
+        atividades.add(atividade);
+    }
+
+    public void ordenar() {
+        int tamanhoLista = atividades.size();
+
+        for (int i = 1; i < tamanhoLista; i++) {
+            Alunos atividadePosicaoBase = atividades.get(i);
             int indicePosicaoBase = i;
 
-            while (indicePosicaoBase > 0){
-                int indicePosicaAnterior = indicePosicaoBase - 1;
-                Alunos alunoPosicaAnterior = lista[indicePosicaAnterior];
+            while (indicePosicaoBase > 0) {
+                int indicePosicaoAnterior = indicePosicaoBase - 1;
+                Alunos atividadePosicaoAnterior = atividades.get(indicePosicaoAnterior);
 
-                Boolean
-                        alunoPosicaoAnteriorVemDepoisDe = alunoPosicaAnterior == null
-                        || alunoPosicaAnterior.vemDepoisDe(alunoPosicaoBase);
-                if (alunoPosicaoAnteriorVemDepoisDe){
-                    lista[indicePosicaoBase] = lista[indicePosicaAnterior];
+                Boolean atividadePosicaoAnteriorVemDepoisDe = atividadePosicaoAnterior == null ||
+                        atividadePosicaoAnterior.vemDepoisDe(atividadePosicaoBase) ;
+
+                if (atividadePosicaoAnteriorVemDepoisDe) {
+                    atividades.set(indicePosicaoBase, atividadePosicaoAnterior);
 
                     indicePosicaoBase--;
                 } else {
@@ -46,10 +38,11 @@ public class ListaAlunos {
                 }
             }
 
-                lista[indicePosicaoBase] = alunoPosicaoBase;
-
+            atividades.set(indicePosicaoBase, atividadePosicaoBase);
         }
     }
 
-
+    public List<Alunos> getAtividades() {
+        return atividades;
+    }
 }
