@@ -38,6 +38,7 @@ public class Principal {
 // primeiro comando da lista
 
 
+        iterar(lista);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -54,8 +55,9 @@ public class Principal {
 
         Files.readAllLines(arquivoss);
 
-        iterar(lista);
+
         lista.ordenar();
+
 
 
 
@@ -64,13 +66,9 @@ public class Principal {
 
         ArrayList<String> LinhasDois = new ArrayList<>();
 
-        for (int i = 0; i < lista.tamanhoLista; i++) {
-            Alunos a = lista.obter(i);
-            System.out.println("Aluno " + a.nome);
+        lista.ordenar();
+        iterar(lista);
 
-            Linhas2.add(a.nome);
-        }
-        System.out.println("------------------------------");
         Path arquivosDois = Paths.get("/home/lucaslimashimon/aula/arquivo2.txt");
         Files.write(arquivo, Linhas2);
 
