@@ -24,7 +24,7 @@ public class ListaAlunos {
 
         tamanhoLista++;
     }
-    void ordenar (Integer tamanhoLista){
+    void ordenar (){
         for (int i = 1 ; i< tamanhoLista; i++){
             Alunos alunoPosicaoBase = lista[i];
 
@@ -47,8 +47,8 @@ public class ListaAlunos {
             }
 
                 lista[indicePosicaoBase] = alunoPosicaoBase;
-        }
 
+        }
     }
 
 

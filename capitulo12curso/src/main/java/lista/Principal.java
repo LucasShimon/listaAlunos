@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) throws IOException {
+
+
         ListaAlunos lista = new ListaAlunos();
 
         System.out.println("------------------------------");
@@ -33,27 +35,47 @@ public class Principal {
         aluno = new Alunos();
         aluno.nome = "José";
         lista.adicionar(aluno);
+// primeiro comando da lista
+
 
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> Linhas = new ArrayList<String>();
+
+        ArrayList<String> Linhas2 = new ArrayList<>();
+
+        iterar(lista);
+
+        Path arquivo = Paths.get("/home/lucaslimashimon/aula/arquivo.txt");
+
+        Files.write(arquivo, Linhas2);
+
+
+        Path arquivoss = Paths.get("/home/lucaslimashimon/aula/arquivo.txt");
+
+        Files.readAllLines(arquivoss);
+
+        iterar(lista);
+        lista.ordenar();
+
+
+
+        //lendo o arquivo
+
+
+        ArrayList<String> LinhasDois = new ArrayList<>();
 
         for (int i = 0; i < lista.tamanhoLista; i++) {
             Alunos a = lista.obter(i);
             System.out.println("Aluno " + a.nome);
 
-            Linhas.add(a.nome);
+            Linhas2.add(a.nome);
         }
         System.out.println("------------------------------");
-        Path arquivo = Paths.get("/home/lucaslimashimon/aula/arquivo2.txt");
-        Files.write(arquivo, Linhas);
+        Path arquivosDois = Paths.get("/home/lucaslimashimon/aula/arquivo2.txt");
+        Files.write(arquivo, Linhas2);
 
-
-
-        lista.ordenar(lista.tamanhoLista);
-        iterar(lista);
+        scanner.close();
     }
-
     static void iterar(ListaAlunos listaAlunos) {
         for (int i = 0; i < listaAlunos.tamanhoLista; i++) {
             Alunos a = listaAlunos.obter(i);
@@ -65,5 +87,6 @@ public class Principal {
             }
         }
         System.out.println("------------------------------");
+
     }
 }
